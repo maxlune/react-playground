@@ -286,3 +286,45 @@ function MultiForm(props) {
 }
 
 ReactDOM.render(<MultiForm />, document.querySelector('#app'));
+
+// ============================================================
+
+function App(props) {
+    const [inputs, setInputs] = React.useState({base: "", number: 0})
+
+    const handleChange = (value) => {
+        setInputs({base: "decimal", number: value})
+    }
+
+    const handleChangeB = (value) => {
+        setInputs({base: "decimal", number: value})
+    }
+
+    const simple = inputs.base === 'decimal' ? divide(inputs.number) : inputs.number;
+    const double = inputs.base === 'binaire' ? doubled(inputs.number) : inputs.number;
+
+    return (
+        <React.Fragment>
+            <BaseNumberInput base="decimal" value={inputs.number} onChangeBase={handleChange} />
+            <BaseNumberInput base="binaire" value={inputs.number * 2} onChangeBase={handleChange}/>
+        </React.Fragment>
+    )
+}
+
+function BaseNumberInput(props) {
+    const base = props.base;
+    const number = props.number;
+
+    const onChangeBase = (e) => {
+        props.onChangeBase(e.target.value)
+    }
+
+    return (
+        <fieldset>
+            <legend>nombre en {base}</legend>
+            <input type="number" value={number} onChange={onChangeBase}></input>
+        </fieldset>
+    )
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
