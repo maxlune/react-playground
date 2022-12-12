@@ -6,3 +6,9 @@ export default function TodoInput(props) {
     onKeyDown={props.onKeyDown}
     ></input>;
 }
+
+// CORR
+// export default function TodoInput({ title }) {
+//   return <input type={title} onChange={(e) => handleTitleChange(e.target.value)} 
+//     onKeyDown={handleKeyDown} />
+// }
